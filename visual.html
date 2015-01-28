@@ -8,46 +8,60 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+    <!-- Sortable
+    <script src="https://rawgit.com/RubaXa/Sortable/master/Sortable.js"></script> -->
+
   </head>
 
     <title>Visualizer</title>
     <body>
-      <h1>Your Research Visualized</h1>
-      <br/>
-      <h3>New Title:</h3>
-      <form id="newTitle" method="POST" action="newTitle.asp">
-        <div class="input-group">
-          <input type="text" name="title">
-          &nbsp;&nbsp;
-          <button id="newTitle" class="btn btn-default" type="submit" >Save</button>
-        </div><!-- /input-group -->
-      </form>
-      <br/>
-      High priority:
-      <p><div class="list-group" id="high-priority"></div></p>
-      <hr>
-      Medium priority:
-      <p><div class="list-group" id="medium-priority"></div></p>
-      <hr>
-      Low priority:
-      <p><div class="list-group" id="low-priority"></div></p>
+
+      <h1>Collected Clips</h1>
+
+      <ul id="tabs">
+        <li><a href="#howTo">How To</a></li>
+        <li><a href="#list">List</a></li>
+      </ul>
+
+      <div class="tabContent" id="howTo">
+        <h1>How To Use the Visualizer</h1>
+        <div>
+          <p>
+           To use the visualizer, click the ICON and enter a search query.
+           As you browse webpages, highlight any information you want to remember,
+           then press Alt+1, Alt+2, Alt+3 to save that information as high 
+           priority, medium priority or low priority, respectively.  Anytime you 
+           open a new tab, this page will appear with the option to view your
+           information in a list or a map view.
+          </p>
+         </div>
+      </div>
+      <!-- LIST VIEW -->
+      <div class="tabContent" id="list">
+        <h1>List</h1>
+          <br/>
+          <br/>
+          <form id="add">
+          <!--Category 1 -->
+          <p><label for="cat1">High Priority</label>
+            <!-- <input type="text" id="cat1" name="cat1" size="50" value="Category 1" /> -->
+          </p>
+          <p><div class="list-group" id="high-priority"></div></p>
+          <!-- Category 2 -->
+          <p><label for="cat2">Medium Priority</label>
+            <!-- <input type="text" id="cat1" name="cat1" size="50" value="Category 2" /> -->
+          </p>
+          <p><div class="list-group" id="medium-priority"></div></p>
+          <!-- Category 3 -->
+          <p><label for="cat3">Low Priority</label>
+            <!-- <input type="text" id="cat1" name="cat1" size="50" value="Category 3" /> -->
+          </p>
+          <p><div class="list-group" id="low-priority"></div></p>
+      </div>
       <hr>
     </body>
-    <style>
-      body {
-        /*overflow-x: hidden; */
-        line-height: 100%;
-        font-size = 12px;
-        padding-top: 10px;
-        padding-right: 10px;
-        padding-bottom: 0px;
-        padding-left: 10px;
-        background-color: #FFFFFF;
-        min-width: 250px;
-        max-width: 100%;
-      }
-    </style>
-    
+    <link type="text/css" rel="stylesheet" href="visual.css"/> 
     <script src="db.js"></script>
     <script src="visual.js"></script>
 

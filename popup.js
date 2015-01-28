@@ -8,13 +8,6 @@ window.addEventListener('load', function(evt) {
       'focused': true}, function(window) {} );
     });
 
-<<<<<<< HEAD
-    document.getElementById('openPage').addEventListener('click', function() {
-      chrome.tabs.create({'url': 'viewpage.html'}, function(window) {} );
-    });
-
-=======
->>>>>>> 57a1c3d75e7ed1d0b15a1a75587706bd2a498a06
     // //add to list
     // chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     //   var tabList = document.getElementById('high-priority');
@@ -85,31 +78,19 @@ function refreshTabs() {
       var a = document.createElement('a');
       a.id = 'tab-' + tab.timestamp;
       a.className = "list-group-item";
-<<<<<<< HEAD
-      var checkbox = document.createElement('input');
-      checkbox.type = "checkbox";
-      checkbox.className = "tab-checkbox";
-      checkbox.setAttribute("data-id", tab.timestamp);
 
-      a.appendChild(checkbox);
+      var x = document.createElement('button');
+      x.class = 'close';
+      x.innerHTML = 'x';
+      x.setAttribute("data-id", tab.timestamp);
 
-      var span = document.createElement('span');
-      span.innerHTML = tab.highlighted;
-
-      a.appendChild(span);
-
-      if (tab.importance == 1) tabList1.appendChild(a);
-      else if (tab.importance == 2) tabList2.appendChild(a);
-      else if (tab.importance == 3) tabList3  .appendChild(a);
-
-      // Setup an event listener for the checkbox.
-      checkbox.addEventListener('click', function(e) {
-=======
+      a.appendChild(x);
 
       var info = document.createElement('a');
       info.innerHTML = tab.highlighted;
       info.href = tab.url;
       info.target = "_blank";
+      info.id = "clip";
 
       a.appendChild(info);
 
@@ -118,20 +99,12 @@ function refreshTabs() {
 
       a.appendChild(space);
 
-      var x = document.createElement('button');
-      x.class = 'close';
-      x.innerHTML = 'Delete';
-      x.setAttribute("data-id", tab.timestamp);
-
-      a.appendChild(x);
-
       if (tab.importance == 1) tabList1.appendChild(a);
       else if (tab.importance == 2) tabList2.appendChild(a);
       else if (tab.importance == 3) tabList3.appendChild(a);
 
       // Setup an event listener for the checkbox.
       x.addEventListener('click', function(e) {
->>>>>>> 57a1c3d75e7ed1d0b15a1a75587706bd2a498a06
         var id = parseInt(e.target.getAttribute('data-id'));
 
         pageDB.deleteTab(id, refreshTabs);

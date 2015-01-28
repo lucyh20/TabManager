@@ -37,21 +37,21 @@
     "add-importance-1": {
       "suggested_key": {
         "default": "Ctrl+1",
-        "mac": "Command+1"
+        "mac": "Alt+1"
       },
       "description": "1."
     },
     "add-importance-2": {
       "suggested_key": {
         "default": "Ctrl+2",
-        "mac": "Command+2"
+        "mac": "Alt+2"
       },
       "description": "2."
     },
     "add-importance-3": {
       "suggested_key": {
         "default": "Ctrl+3",
-        "mac": "Command+3"
+        "mac": "Alt+3"
       },
       "description": "3."
     },

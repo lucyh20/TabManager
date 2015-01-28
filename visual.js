@@ -75,34 +75,36 @@ function refreshVisual() {
       // Read the tab items backwards (most recent first).
       var tab = tabs[tabs.length - i - 1];
 
+      //new Sortable(document.getElementsByClassName('sortable')[0]);
+      //var list = document.getElementByClassName('list-group');
+      //var sortable = Sortable.create(list);
+      //Sortable.create(simpleList, { /* options */});
+
       var a = document.createElement('a');
       a.id = 'tab-' + tab.timestamp;
       a.className = "list-group-item";
+
+      var remove = document.createElement('button');
+      remove.class = 'close';
+      remove.id = 'small'
+      remove.innerHTML = 'x';
+      remove.setAttribute("data-id", tab.timestamp);
+
+      a.appendChild(remove);
 
       var info = document.createElement('a');
       info.innerHTML = tab.highlighted;
       info.href = tab.url;
       info.target = "_blank";
+      info.id = "clip";
 
       a.appendChild(info);
-
-      var space = document.createElement('span')
-      space.innerHTML = '&nbsp;&nbsp;'
-
-      a.appendChild(space);
-
-      var x = document.createElement('button');
-      x.class = 'close';
-      x.innerHTML = 'Delete';
-      x.setAttribute("data-id", tab.timestamp);
-
-      a.appendChild(x);
 
       if (tab.importance == 1) tabList1.appendChild(a);
       else if (tab.importance == 2) tabList2.appendChild(a);
       else if (tab.importance == 3) tabList3.appendChild(a);
 
-      x.addEventListener('click', function(e) {
+      remove.addEventListener('click', function(e) {
         var id = parseInt(e.target.getAttribute('data-id'));
         pageDB.deleteTab(id, refreshVisual);
       });
@@ -111,5 +113,3 @@ function refreshVisual() {
 
   });
 }
-
-
