@@ -93,7 +93,7 @@ function refreshVisual() {
       a.appendChild(remove);
 
       var info = document.createElement('a');
-      info.innerHTML = tab.highlighted;
+      info.innerHTML = tab.ttl; //highlighted;
       info.href = tab.url;
       info.target = "_blank";
       info.id = "clip";

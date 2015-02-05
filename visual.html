@@ -13,8 +13,12 @@
     
     <script src="db.js"></script>
     <script src="visual.js"></script>
+   
     <!--Tabs -->
     <script src="tabs.js"></script>
+   
+    <!-- D3 -->
+    <script type="text/javascript" src="d3/d3.min.js"></script>
 
     <!-- Sortable
     <script src="https://rawgit.com/RubaXa/Sortable/master/Sortable.js"></script> -->
@@ -27,11 +31,39 @@
       <h1>Visualizer</h1>
 
       <ul id="tabs">
-        <li><a href="#howTo">How To</a></li>
         <li><a href="#list">List</a></li>
         <li><a href="#map">Map</a></li>
+        <li><a href="#howTo">How To</a></li>
       </ul>
 
+      <!-- List View -->
+      <div class="tabContent" id="list">
+        <h2>List</h2>
+          <form id="add">
+          <!--Category 1 -->
+          <p><label for="cat1">Important</label>
+            <!-- <input type="text" id="cat1" name="cat1" size="50" value="Category 1" /> -->
+          </p>
+          <p><div class="list-group" id="high-priority"></div></p>
+          <!-- Category 2 -->
+          <p><label for="cat2">Potentially important</label>
+            <!-- <input type="text" id="cat1" name="cat1" size="50" value="Category 2" /> -->
+          </p>
+          <p><div class="list-group" id="medium-priority"></div></p>
+          <!-- Category 3 -->
+          <p><label for="cat3">Unimportant</label>
+            <!-- <input type="text" id="cat1" name="cat1" size="50" value="Category 3" /> -->
+          </p>
+          <p><div class="list-group" id="low-priority"></div></p>
+      </div>
+
+      <!-- Map View -->
+      <div class="tabContent" id="map">
+        <h2>Map</h2>
+          <p>Coming soon...</p>
+      </div>
+
+      <!-- How To User the Visualizer -->
       <div class="tabContent" id="howTo">
         <h2>How To Use the Visualizer</h2>
         <div>
@@ -39,42 +71,16 @@
            To use the visualizer, click the ICON and enter a search query.
            <br/><br/>
            As you browse webpages, highlight any information you want to remember,
-           then press <strong>Alt+1, Alt+2, Alt+3</strong> to save that information as high 
-           priority, medium priority or low priority, respectively.
+           then press <strong>Alt+1, Alt+2, Alt+3</strong> to save potentially important  
+           information, to archive important information, and to note information that 
+           had potential but turned out to be irrelevant.
            <br/><br/>
-           Anytime you 
-           open a new tab, this page will appear with the option to view your
-           information in a list or a map view.
+           Anytime you open a new tab, this page will appear with the option to view your
+           information in a list<!--or a map--> view.
           </p>
          </div>
       </div>
 
-      <!-- LIST VIEW -->
-      <div class="tabContent" id="list">
-        <h2>List</h2>
-          <form id="add">
-          <!--Category 1 -->
-          <p><label for="cat1">High Priority</label>
-            <!-- <input type="text" id="cat1" name="cat1" size="50" value="Category 1" /> -->
-          </p>
-          <p><div class="list-group" id="high-priority"></div></p>
-          <!-- Category 2 -->
-          <p><label for="cat2">Medium Priority</label>
-            <!-- <input type="text" id="cat1" name="cat1" size="50" value="Category 2" /> -->
-          </p>
-          <p><div class="list-group" id="medium-priority"></div></p>
-          <!-- Category 3 -->
-          <p><label for="cat3">Low Priority</label>
-            <!-- <input type="text" id="cat1" name="cat1" size="50" value="Category 3" /> -->
-          </p>
-          <p><div class="list-group" id="low-priority"></div></p>
-      </div>
-
-      <!-- MAP VIEW -->
-      <div class="tabContent" id="map">
-        <h2>Map</h2>
-          <p>Coming soon...</p>
-      </div>
       <hr>
     </body>
 

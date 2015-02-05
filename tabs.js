@@ -10,8 +10,8 @@ function init() {
     // Grab the tab links & content divs from the page.
 	var tabListItems = document.getElementById('tabs').childNodes;
 	for (var i = 0; i < tabListItems.length; i++) {
-		if (tabListItems[i].nodeName == "LI") {
-			var tabLink = getFirstChildWithTagName(tabListItems[i], 'A');
+		if (tabListItems[i].nodeName == "li") {
+			var tabLink = getFirstChildWithTagName(tabListItems[i], 'a');
 			var id = getHash(tabLink.getAttribute('href'));
 			tabLinks[id] = tabLink;
 			contentDivs[id] = document.getElementById(id);

@@ -45,8 +45,85 @@ function add3() {
 }
 
 
+/*var collect = function() {
+	// add listeners
+	function init() {
+		chrome.extension.onRequest.addListener(
+        function(request, sender) {
+        var title = request['title'];
+        var url = request['url'];
+        var highlighted = request['selected'];
+	 	pageDB.open();
+	 	return {
+	 	 	ttl:title,
+	 	 	url:url,
+	 	 	highlighted:highlighted,
+	 	 	init:init()
+	 	 }
+	   });
+	}
+	// Create the item.
+	if (request['importance1']) {
+	   pageDB.createTab(title, 1, highlighted, url, function() {});
+	   window.alert("Archived \"" + title + "\" as important.");
+	} else if (request['importance2']) {
+	   pageDB.createTab(title, 2, highlighted, url, function() {});
+	   window.alert("Added \"" + title + "\" as potentially important.");
+	} else if (request['importance3']) {
+	   pageDB.createTab(title, 3, highlighted, url, function() {});
+	   window.alert("Noted \"" + title + "\" as unimportant.");
+	}
+
+}
+
+collect.init();*/
+
 function init() {
-   //add listeners
+   // add listeners
+	chrome.extension.onRequest.addListener(
+      function(request, sender) {
+        var title = request['title'];
+        var url = request['url'];
+        var highlighted = request['selected'];
+	 	 	pageDB.open();
+
+	 	if (request['importance1']){
+	 	 	// Create the item.
+	        pageDB.createTab(title, 1, highlighted, url, function() {});
+	        window.alert("Archived \"" + title + "\" as important.");
+	        /* For adding user's highlighted selections of text
+	        if (highlighted.replace(/ /g,'') != '') {
+	        	pageDB.createTab(title, 1, highlighted, url, function() {});
+	        	window.alert("Added \"" + highlighted + "\" with high importance.");
+	        } else window.alert("Nothing to add.");*/
+	 	} else if (request['importance2']) {
+	        // Create the item
+	        pageDB.createTab(title, 2, highlighted, url, function() {});
+	        window.alert("Added \"" + title + "\" as potentially important.");
+	        /*if (highlighted.replace(/ /g,'') != '') {
+	        	pageDB.createTab(title, 2, highlighted, url, function() {});
+	        	window.alert("Added \"" + highlighted + "\" with medium importance.");
+	        } else window.alert("Nothing to add.");*/	
+		} else if (request['importance3']) {
+            // Create the item.
+            pageDB.createTab(title, 3, highlighted, url, function() {});
+            window.alert("Marked \"" + title + "\" as unimportant.");
+            /*if (highlighted.replace(/ /g,'') != '') {
+         	  pageDB.createTab(title, 3, highlighted, url, function() {});
+         	  window.alert("Added \"" + highlighted + "\" with low importance.");
+            } else window.alert("Nothing to add.");*/
+		}
+		return {
+			ttl:title
+		} 
+      });
+      return {
+      	ttl:ttl
+      }
+}
+
+/*function init() {
+   // add listeners
 	chrome.extension.onRequest.addListener(
       function(request, sender) {
          if (request['importance1']) {
@@ -55,35 +132,48 @@ function init() {
             var highlighted = request['selected'];
 		 	 	pageDB.open();
 	         // Create the item.
+	         pageDB.createTab(title, 1, highlighted, url, function() {});
+	         window.alert("Archived \"" + title + "\" as important.");
+	         /* For adding user's highlighted selections of text
 	         if (highlighted.replace(/ /g,'') != '') {
 	         	pageDB.createTab(title, 1, highlighted, url, function() {});
 	         	window.alert("Added \"" + highlighted + "\" with high importance.");
 	         }
-	         else window.alert("Nothing to add.");
-			} else if (request['importance2']) {
+	         else window.alert("Nothing to add.");*/
+
+			/*} else if (request['importance2']) {
             var title = request['title'];
             var url = request['url'];
             var highlighted = request['selected'];
 	 		   pageDB.open();
 	         // Create the item
-	         if (highlighted.replace(/ /g,'') != '') {
+	         pageDB.createTab(title, 2, highlighted, url, function() {});
+	         window.alert("Added \"" + title + "\" as potentially important.");
+	         /*if (highlighted.replace(/ /g,'') != '') {
 	         	pageDB.createTab(title, 2, highlighted, url, function() {});
 	         	window.alert("Added \"" + highlighted + "\" with medium importance.");
 	         }
-	         else window.alert("Nothing to add.");
-			} else if (request['importance3']) {
+	         else window.alert("Nothing to add.");*/
+			
+			/*} else if (request['importance3']) {
             var title = request['title'];
             var url = request['url'];
             var highlighted = request['selected'];
 	 		   pageDB.open();
 	         // Create the item.
-	         if (highlighted.replace(/ /g,'') != '') {
+	         pageDB.createTab(title, 3, highlighted, url, function() {});
+	         window.alert("Marked \"" + title + "\" as unimportant.");
+	         /*if (highlighted.replace(/ /g,'') != '') {
 	         	pageDB.createTab(title, 3, highlighted, url, function() {});
 	         	window.alert("Added \"" + highlighted + "\" with low importance.");
 	         }
 	         else window.alert("Nothing to add.");
-			}
+			} 
+
+
       });
 }
+
+/* Should make sure doubles can't be added to same group!!! */
 
 init();
