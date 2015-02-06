@@ -1,7 +1,5 @@
-/* STYLE */
-
 body {
-    font-size: 80%; 
+    font-size: 60%; 
     font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif;
     /*overflow-x: hidden; */
     line-height: 100%;
@@ -15,6 +13,11 @@ body {
     max-width: 100%;
     margin: 15px;
 }
+
+.input-group .form-control {
+    margin-top: 10px;
+}
+
 h1 {
     font-size: 36px;
     padding-bottom: 10px;
@@ -31,67 +34,15 @@ h3 {
     font-weight: bolder;
 }
 
-a#help, a#help:hover {
-    font-size: 12px;
-    color: #000000;
-    font-style: italic;
-    text-decoration: none;
-}
-
-p {
+p.empty {
     font-size: 10px;
-    font-style: lighter;
+    font-weight: lighter;
 }
 
-#list p {
+a#clip {
+    color: #FFFFFF;
     font-size: 12px;
 }
-
-.invisible {
-    display: none;
-}
-
-.visible {
-    display: block;
-}
-
-
-
-/* Tabs
-ul#tabs { 
-    list-style-type: none; 
-    margin: 30px 0 0 0; 
-    padding: 0 0 0.3em 0; 
-}
-ul#tabs li { 
-    display: inline; 
-}
-ul#tabs li a { 
-    color: #42454a; 
-    background-color: #FFFFFF; 
-    border: 1px solid #000000; 
-    border-bottom: none; 
-    padding: 0.3em; 
-    text-decoration: none; 
-}
-ul#tabs li a:hover { 
-    background-color: #f1f0ee; 
-}
-ul#tabs li a.selected { 
-    color: #000; 
-    background-color: #f1f0ee; 
-    font-weight: bold; 
-    padding: 0.7em 0.3em 0.38em 0.3em; 
-}
-div.tabContent { 
-    border: 1px solid #c9c3ba; 
-    padding: 0.5em; 
-    background-color: #FFFFFF; 
-}
-div.tabContent.hide { 
-    display: none; 
-} 
-*/
 
 div#high-priority.list-group a.list-group-item{
     background-color: #08519c;
@@ -104,9 +55,6 @@ div#low-priority.list-group a.list-group-item{
 }
 
 
-a#clip {
-    color: #FFFFFF;
-}
 
 button {
     margin: 10px 10px 10px 0px;
@@ -121,4 +69,3 @@ button {
     color: #de2d26;
     margin: 5px;
     background: none;
-}

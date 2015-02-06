@@ -35,7 +35,7 @@ window.addEventListener('load', function(evt) {
 
     //IndexedDB stuff
 
-    pageDB.open(refreshVisual);
+    pageDB.open(refreshTabs);
 
     // // Get references to the form elements.
     // var newTabForm = document.getElementById('newSearch');
@@ -64,7 +64,7 @@ window.addEventListener('load', function(evt) {
 });
 
 // Update the list of todo items.
-function refreshVisual() {  
+function refreshTabs() {  
   pageDB.fetchTabs(function(tabs) {
     var tabList1 = document.getElementById('high-priority');
     tabList1.innerHTML = '';
@@ -72,6 +72,27 @@ function refreshVisual() {
     tabList2.innerHTML = '';
     var tabList3 = document.getElementById('low-priority');
     tabList3.innerHTML = '';
+
+    var important = false,
+        potential = false,
+        unimportant = false;
+
+    if (tabs.length == 0) {
+      var add1 = document.createElement('p');
+      add1.innerHTML = 'Use Alt+1 to mark tabs as important.';
+      add1.className = 'empty';
+      tabList1.appendChild(add1);
+
+      var add2 = document.createElement('p');
+      add2.innerHTML = 'Use Alt+2 to mark tabs as potentially important.';
+      add2.className = 'empty';
+      tabList2.appendChild(add2);
+
+      var add3 = document.createElement('p');
+      add3.innerHTML = 'Use Alt+3 to mark tabs as unimportant.';
+      add3.className = 'empty';
+      tabList3.appendChild(add3);
+    }
 
     for(var i = 0; i < tabs.length; i++) {
       // Read the tab items backwards (most recent first).
@@ -86,30 +107,55 @@ function refreshVisual() {
       a.id = 'tab-' + tab.timestamp;
       a.className = "list-group-item";
 
-      var remove = document.createElement('button');
-      remove.class = 'close';
-      remove.id = 'small'
-      remove.innerHTML = 'x';
+      /*var remove = document.createElement('button');
+      remove.className = 'glyphicon glyphicon-remove';
+      remove.innerHTML = '';
       remove.setAttribute("data-id", tab.timestamp);
 
-      a.appendChild(remove);
+      a.appendChild(remove);*/
 
       var info = document.createElement('a');
-      info.innerHTML = tab.text; //highlighted;
+      info.innerHTML = tab.text; //the title of the webpage
       info.href = tab.url;
       info.target = "_blank";
       info.id = "clip";
 
       a.appendChild(info);
 
-      if (tab.importance == 1) tabList1.appendChild(a);
-      else if (tab.importance == 2) tabList2.appendChild(a);
-      else if (tab.importance == 3) tabList3.appendChild(a);
+      if (tab.importance == 1) {
+        tabList1.appendChild(a);
+        important = true;
+      } else if (tab.importance == 2) {
+        tabList2.appendChild(a);
+        potential = true;
+      } else if (tab.importance == 3) {
+        tabList3.appendChild(a);
+        unimportant = false;
+      }
 
-      remove.addEventListener('click', function(e) {
+      if (!important) {
+        var add1 = document.createElement('p');
+        add1.innerHTML = 'No tabs marked as important.';
+        add1.className = 'empty';
+        tabList1.appendChild(add1);
+      }
+      if (!potential) {
+        var add2 = document.createElement('p');
+        add2.innerHTML = 'No tabs marked as potentially important.';
+        add2.className = 'empty';
+        tabList2.appendChild(add2);
+      }
+      if (!unimportant) {
+        var add3 = document.createElement('p');
+        add3.innerHTML = 'No tabs marked as unimportant.';
+        add3.className = 'empty';
+        tabList3.appendChild(add3);
+      }
+
+      /*remove.addEventListener('click', function(e) {
         var id = parseInt(e.target.getAttribute('data-id'));
-        pageDB.deleteTab(id, refreshVisual);
-      });
+        pageDB.deleteTab(id, refreshTabs);
+      });*/
 
     }
 

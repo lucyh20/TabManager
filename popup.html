@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="popup.css"/>
   </head>
 
     <title>Tab Manager</title>
     <body>
-      <p>Begin a new search task. </p>
+      <p>Enter a new search task. </p>
       <div class="row">
         <div class="col-sm-6">
         <form id="newSearch" method="POST" action="#">
@@ -26,15 +28,14 @@
         </div><!-- /.col-lg-6 -->
       </div>
       <hr>
-      Potential
+      <h3>Important</h3>
       <p><div class="list-group" id="high-priority"></div></p>
-      Archived
+      <h3>Potentially Important</h3>
       <p><div class="list-group" id="medium-priority"></div></p>
-      Irrelevant
+      <h3>Unimportant</h3>
       <p><div class="list-group" id="low-priority"></div></p>
       <hr>
     </body>
-    <link type="text/css" rel="stylesheet" href="visual.css"/> 
     
     <script src="db.js"></script>
     <script src="popup.js"></script>

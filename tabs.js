@@ -1,4 +1,4 @@
-/*** FROM http://www.elated.com/articles/javascript-tabs/ ***/
+/*** FROM http://www.elated.com/articles/javascript-tabs/
 
 window.addEventListener("load", init);
 
@@ -63,3 +63,5 @@ function getHash(url) {
 	var hashPos = url.lastIndexOf('#');
 	return url.substring(hashPos + 1);
 }
+
+***/

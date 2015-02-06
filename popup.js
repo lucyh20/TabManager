@@ -71,6 +71,28 @@ function refreshTabs() {
     var tabList3 = document.getElementById('low-priority');
     tabList3.innerHTML = '';
 
+    var important = false,
+        potential = false,
+        unimportant = false;
+
+    // If there are no tabs in the list, tell the user how to fill them.
+    if (tabs.length == 0) {
+      var add1 = document.createElement('p');
+      add1.innerHTML = 'Use Alt+1 to mark tabs as important.';
+      add1.className = 'empty';
+      tabList1.appendChild(add1);
+
+      var add2 = document.createElement('p');
+      add2.innerHTML = 'Use Alt+2 to mark tabs as potentially important.';
+      add2.className = 'empty';
+      tabList2.appendChild(add2);
+
+      var add3 = document.createElement('p');
+      add3.innerHTML = 'Use Alt+3 to mark tabs as unimportant.';
+      add3.className = 'empty';
+      tabList3.appendChild(add3);
+    }
+
     for(var i = 0; i < tabs.length; i++) {
       // Read the tab items backwards (most recent first).
       var tab = tabs[tabs.length - i - 1];
@@ -79,13 +101,15 @@ function refreshTabs() {
       a.id = 'tab-' + tab.timestamp;
       a.className = "list-group-item";
 
-      var x = document.createElement('button');
-      x.class = 'close';
-      x.innerHTML = 'x';
-      x.setAttribute("data-id", tab.timestamp);
+      /* Remove button
+      var remove = document.createElement('button');
+      remove.className = 'glyphicon glyphicon-remove';
+      remove.innerHTML = '';
+      remove.setAttribute("data-id", tab.timestamp);
 
-      a.appendChild(x);
+      a.appendChild(remove);*/
 
+      // Title of webpage appears as link to webpage
       var info = document.createElement('a');
       info.innerHTML = tab.text;
       info.href = tab.url;
@@ -99,16 +123,49 @@ function refreshTabs() {
 
       a.appendChild(space);
 
-      if (tab.importance == 1) tabList1.appendChild(a);
-      else if (tab.importance == 2) tabList2.appendChild(a);
-      else if (tab.importance == 3) tabList3.appendChild(a);
+      
+      if (tab.importance == 1) {
+        tabList1.appendChild(a);
+        important = true;
+      } else if (tab.importance == 2) {
+        tabList2.appendChild(a);
+        potential = true;
+      } else if (tab.importance == 3) {
+        tabList3.appendChild(a);
+        unimportant = false;
+      }
 
-      // Setup an event listener for the checkbox.
+      if (!important) {
+        var add1 = document.createElement('p');
+        add1.innerHTML = 'No tabs marked as important.';
+        add1.className = 'empty';
+        tabList1.appendChild(add1);
+      }
+      if (!potential) {
+        var add2 = document.createElement('p');
+        add2.innerHTML = 'No tabs marked as potentially important.';
+        add2.className = 'empty';
+        tabList2.appendChild(add2);
+      }
+      if (!unimportant) {
+        var add3 = document.createElement('p');
+        add3.innerHTML = 'No tabs marked as unimportant.';
+        add3.className = 'empty';
+        tabList3.appendChild(add3);
+      }
+
+/*** WHY ISN'T IT DELETING? ***/
+      /*remove.addEventListener('click', function(e) {
+        var id = parseInt(e.target.getAttribute('data-id'));
+        pageDB.deleteTab(id, refreshTabs);
+      });*/
+
+      /*Setup an event listener for the checkbox.
       x.addEventListener('click', function(e) {
         var id = parseInt(e.target.getAttribute('data-id'));
 
         pageDB.deleteTab(id, refreshTabs);
-      });
+      });*/
     }
 
   });
