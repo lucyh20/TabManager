@@ -87,7 +87,7 @@ function refreshTabs() {
       a.appendChild(x);
 
       var info = document.createElement('a');
-      info.innerHTML = tab.ttl;
+      info.innerHTML = tab.text;
       info.href = tab.url;
       info.target = "_blank";
       info.id = "clip";

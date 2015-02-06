@@ -113,13 +113,7 @@ function init() {
          	  window.alert("Added \"" + highlighted + "\" with low importance.");
             } else window.alert("Nothing to add.");*/
 		}
-		return {
-			ttl:title
-		} 
       });
-      return {
-      	ttl:ttl
-      }
 }
 
 /*function init() {

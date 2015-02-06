@@ -1,8 +1,8 @@
 function getInfo() {
-	var ttl = document.title;
+	var title = document.title;
 	var link = document.URL;
 	var highlighted = window.getSelection().toString();
-	chrome.extension.sendRequest({'title': ttl, 'selected': highlighted, 'url': link, 'importance1': true});
+	chrome.extension.sendRequest({'title': title, 'selected': highlighted, 'url': link, 'importance1': true});
 
 	/* Allow title & URL [& the selection of of text user highlighted on webpage] 
 	// to be available elsewhere (a.k.a. public, not private variables) 
