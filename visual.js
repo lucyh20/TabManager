@@ -1,5 +1,7 @@
 // When the popup HTML has loaded
 window.addEventListener('load', function(evt) {
+
+
     // Handle the bookmark form submit event
     /*document.getElementById('newSearch').addEventListener('submit', function() {
       var text = document.getElementById('query').value;
@@ -112,4 +114,19 @@ function refreshVisual() {
     }
 
   });
+
+  // View instructions when mouseover Need Help? & hide them on mouseout
+  var help = document.getElementById("help");
+  help.addEventListener( "mouseover", view);
+  help.addEventListener("mouseout", hide);
+  
+  function view() {
+    document.getElementById('instructions').className = "visible";
+  }
+  function hide() {
+    document.getElementById('instructions').className = "invisible";
+  }
+
+
+
 }
