@@ -86,7 +86,7 @@ function init() {
         var url = request['url'];
         var highlighted = request['selected'];
 	 	 	pageDB.open();
-
+	 	// SHOULD MAKE ALERTS LESS INTRUSIVE
 	 	if (request['importance1']){
 	 	 	// Create the item.
 	        pageDB.createTab(title, 1, highlighted, url, function() {});

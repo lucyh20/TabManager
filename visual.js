@@ -1,3 +1,10 @@
+window.addEventListener('focus', function() {
+
+  pageDB.open(refreshVisual);  // for visual in tab window
+  pageDB.open(refreshTabs);    // for popup
+
+});
+
 // When the popup HTML has loaded
 window.addEventListener('load', function(evt) {
 
@@ -35,7 +42,7 @@ window.addEventListener('load', function(evt) {
 
     //IndexedDB stuff
 
-    pageDB.open(refreshTabs);
+    pageDB.open(refreshVisual);
 
     // // Get references to the form elements.
     // var newTabForm = document.getElementById('newSearch');
@@ -64,7 +71,7 @@ window.addEventListener('load', function(evt) {
 });
 
 // Update the list of todo items.
-function refreshTabs() {  
+function refreshVisual() {  
   pageDB.fetchTabs(function(tabs) {
     var tabList1 = document.getElementById('high-priority');
     tabList1.innerHTML = '';
@@ -73,10 +80,7 @@ function refreshTabs() {
     var tabList3 = document.getElementById('low-priority');
     tabList3.innerHTML = '';
 
-    var important = false,
-        potential = false,
-        unimportant = false;
-
+// NOT ALWAYS WORKING...
     if (tabs.length == 0) {
       var add1 = document.createElement('p');
       add1.innerHTML = 'Use Alt+1 to mark tabs as important.';
@@ -107,12 +111,12 @@ function refreshTabs() {
       a.id = 'tab-' + tab.timestamp;
       a.className = "list-group-item";
 
-      /*var remove = document.createElement('button');
+      var remove = document.createElement('button');
       remove.className = 'glyphicon glyphicon-remove';
       remove.innerHTML = '';
       remove.setAttribute("data-id", tab.timestamp);
 
-      a.appendChild(remove);*/
+      a.appendChild(remove);
 
       var info = document.createElement('a');
       info.innerHTML = tab.text; //the title of the webpage
@@ -122,17 +126,22 @@ function refreshTabs() {
 
       a.appendChild(info);
 
+    /*var important = false,
+        potential = false,
+        unimportant = false;*/
+
       if (tab.importance == 1) {
         tabList1.appendChild(a);
-        important = true;
+        //important = true;
       } else if (tab.importance == 2) {
         tabList2.appendChild(a);
-        potential = true;
+        //potential = true;
       } else if (tab.importance == 3) {
         tabList3.appendChild(a);
-        unimportant = false;
+        //unimportant = true;
       }
 
+      /* WHY IS THIS NOT WORKING???
       if (!important) {
         var add1 = document.createElement('p');
         add1.innerHTML = 'No tabs marked as important.';
@@ -150,12 +159,14 @@ function refreshTabs() {
         add3.innerHTML = 'No tabs marked as unimportant.';
         add3.className = 'empty';
         tabList3.appendChild(add3);
-      }
+      }*/
 
-      /*remove.addEventListener('click', function(e) {
+// SOMETIMES HAVE TO CLICK TWICE...WHY???
+      remove.addEventListener('click', function(e) {
         var id = parseInt(e.target.getAttribute('data-id'));
-        pageDB.deleteTab(id, refreshTabs);
-      });*/
+        pageDB.deleteTab(id, refreshVisual);
+        pageDB.open(refreshTabs);
+      });
 
     }
 
@@ -172,7 +183,4 @@ function refreshTabs() {
   function hide() {
     document.getElementById('instructions').className = "invisible";
   }
-
-
-
 }

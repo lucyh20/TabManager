@@ -71,9 +71,9 @@ function refreshTabs() {
     var tabList3 = document.getElementById('low-priority');
     tabList3.innerHTML = '';
 
-    var important = false,
+    /*var important = false,
         potential = false,
-        unimportant = false;
+        unimportant = false;*/
 
     // If there are no tabs in the list, tell the user how to fill them.
     if (tabs.length == 0) {
@@ -101,13 +101,13 @@ function refreshTabs() {
       a.id = 'tab-' + tab.timestamp;
       a.className = "list-group-item";
 
-      /* Remove button
+      // Remove button
       var remove = document.createElement('button');
       remove.className = 'glyphicon glyphicon-remove';
       remove.innerHTML = '';
       remove.setAttribute("data-id", tab.timestamp);
 
-      a.appendChild(remove);*/
+      a.appendChild(remove);
 
       // Title of webpage appears as link to webpage
       var info = document.createElement('a');
@@ -126,16 +126,16 @@ function refreshTabs() {
       
       if (tab.importance == 1) {
         tabList1.appendChild(a);
-        important = true;
+        //important = true;
       } else if (tab.importance == 2) {
         tabList2.appendChild(a);
-        potential = true;
+        //potential = true;
       } else if (tab.importance == 3) {
         tabList3.appendChild(a);
-        unimportant = false;
+        //unimportant = false;
       }
 
-      if (!important) {
+      /*if (!important) {
         var add1 = document.createElement('p');
         add1.innerHTML = 'No tabs marked as important.';
         add1.className = 'empty';
@@ -152,13 +152,13 @@ function refreshTabs() {
         add3.innerHTML = 'No tabs marked as unimportant.';
         add3.className = 'empty';
         tabList3.appendChild(add3);
-      }
+      }*/
 
-/*** WHY ISN'T IT DELETING? ***/
-      /*remove.addEventListener('click', function(e) {
+      remove.addEventListener('click', function(e) {
         var id = parseInt(e.target.getAttribute('data-id'));
         pageDB.deleteTab(id, refreshTabs);
-      });*/
+        pageDB.open(refreshVisual);
+      });
 
       /*Setup an event listener for the checkbox.
       x.addEventListener('click', function(e) {

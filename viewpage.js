@@ -1,4 +1,4 @@
-// When page has loaded
+/*// When page has loaded
 window.addEventListener('load', function(evt) {
     pageDB.open(refreshTabs);
 });
@@ -54,3 +54,4 @@ function refreshTabs() {
 
   });
 }
+*/
