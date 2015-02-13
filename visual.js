@@ -86,7 +86,7 @@ function refreshVisual() {
     // export code from http://stackoverflow.com/questions/20104552/javascript-export-in-json-and-download-it-as-text-file-by-clicking-a-button
     var save = document.getElementById("export");
     save.download = "JSONexport.txt";
-    save.href = "data:text/plain;base64," + btoa(allTabs);
+    save.href = "data:text/plain;base64," + btoa(unescape(encodeURIComponent(allTabs)));
     save.innerHTML = "Export";
 
     if (tabs.length == 0) {
@@ -119,12 +119,12 @@ function refreshVisual() {
       a.id = 'tab-' + tab.timestamp;
       a.className = "list-group-item";
 
-      var up = document.createElement('button');
+      /*var up = document.createElement('button');
       up.className = 'glyphicon glyphicon-chevron-up'
       up.innerHTML = '';
       up.setAttribute("data-id", tab.timestamp);
 
-      a.appendChild(up);
+      a.appendChild(up);*/
 
       var remove = document.createElement('button');
       remove.className = 'glyphicon glyphicon-remove';
