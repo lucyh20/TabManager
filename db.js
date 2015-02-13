@@ -7,12 +7,14 @@ var pageDB = (function() {
 	 */
 	tDB.open = function(callback) {
 	  // Database version.
-	  var version = 1;
+	  // (would need to upgrade version if want to modify object store)
+	  var version = 1; 
 
 	  // Open a connection to the datastore.
 	  var request = indexedDB.open('tabs', version);
 
 	  // Handle datastore upgrades.
+	  // (can only create bject stores on upgradeneeded event)
 	  request.onupgradeneeded = function(e) {
 	    var db = e.target.result;
 
@@ -47,7 +49,7 @@ var pageDB = (function() {
 	 */
 	tDB.fetchTabs = function(callback) {
 	  var db = datastore;
-	  var transaction = db.transaction(['tab'], 'readwrite');
+	  var transaction = db.transaction(['tab'], 'readwrite');  // 2 types of transactions are readwrite (to add data) & readonly
 	  var objStore = transaction.objectStore('tab');
 
 	  var keyRange = IDBKeyRange.lowerBound(0);
@@ -101,11 +103,12 @@ var pageDB = (function() {
 	  };
 
 	  // Create the datastore request.
-	  var request = objStore.put(tab);
+	  var request = objStore.put(tab);   // not .add(tab, #) ?  where second arg. is unique key to identify data
 
 	  // Handle a successful datastore put.
 	  request.onsuccess = function(e) {
 	    // Execute the callback function.
+	    console.log("Successfully added!")
 	    callback(tab);
 	  };
 
@@ -124,6 +127,7 @@ var pageDB = (function() {
 	  var request = objStore.delete(id);
 
 	  request.onsuccess = function(e) {
+	  	console.log("Successfully deleted!");
 	    callback();
 	  }
 

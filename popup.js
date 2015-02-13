@@ -2,11 +2,15 @@
 window.addEventListener('load', function(evt) {
     // Handle the bookmark form submit event
     document.getElementById('newSearch').addEventListener('submit', function() {
-      var text = document.getElementById('query').value;
+      var query = document.getElementById('query').value;
       //open new Google window
-      chrome.windows.create({'url': 'https://www.google.com/search?q=' + text, 
+      chrome.windows.create({'url': 'https://www.google.com/search?q=' + query, 
       'focused': true}, function(window) {} );
     });
+    /* NOT WORKING
+    return {
+      query:query
+    }*/
 
     // //add to list
     // chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
@@ -34,6 +38,7 @@ window.addEventListener('load', function(evt) {
     //IndexedDB stuff
 
     pageDB.open(refreshTabs);
+    //pageDB.open(refreshVisual);
 
     // // Get references to the form elements.
     // var newTabForm = document.getElementById('newSearch');
@@ -70,6 +75,9 @@ function refreshTabs() {
     tabList2.innerHTML = '';
     var tabList3 = document.getElementById('low-priority');
     tabList3.innerHTML = '';
+
+    /*var researchTopic = document.getElementById('query');
+    researchTopic.value = query;
 
     /*var important = false,
         potential = false,
@@ -157,7 +165,7 @@ function refreshTabs() {
       remove.addEventListener('click', function(e) {
         var id = parseInt(e.target.getAttribute('data-id'));
         pageDB.deleteTab(id, refreshTabs);
-        pageDB.open(refreshVisual);
+        //pageDB.open(refreshVisual);
       });
 
       /*Setup an event listener for the checkbox.

@@ -34,7 +34,7 @@ h3 {
 a#help, a#help:hover {
     font-size: 12px;
     color: #000000;
-    font-style: italic;
+    /*font-style: italic;*/
     text-decoration: none;
 }
 
@@ -110,15 +110,27 @@ a#clip {
 
 button {
     margin: 10px 10px 10px 0px;
-    color: #de2d26;
     font-weight: bolder;
     background: white;
     border: none;
     border-radius: 4px;
 }
 
-.glyphicon glyphicon-remove {
-    color: #de2d26;
-    margin: 5px;
+a#export {
+    font-weight: normal;
+    font-size: 12px;
+    color: #000000;
+    text-decoration: none;
+}
+a#export:hover {
+    text-decoration: underline;
+}
+
+button.glyphicon.glyphicon-remove {
+    color: #FFF;
     background: none;
+    padding-top: 5px;
+}
+button.glyphicon.glyphicon-remove:hover {
+    color: #de2d26;
 }

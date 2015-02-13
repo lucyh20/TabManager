@@ -3,6 +3,7 @@ function getInfo() {
   var link = document.URL;
   var highlighted = window.getSelection().toString();
   chrome.extension.sendRequest({'title': ttl, 'url': link, 'selected': highlighted, 'importance3': true});
+  pageDB.open(refreshVisual);
 }
 
 getInfo();

@@ -1,13 +1,14 @@
 window.addEventListener('focus', function() {
 
+  //pageDB.open(refreshTabs);    // for popup
   pageDB.open(refreshVisual);  // for visual in tab window
-  pageDB.open(refreshTabs);    // for popup
 
 });
 
+
+
 // When the popup HTML has loaded
 window.addEventListener('load', function(evt) {
-
 
     // Handle the bookmark form submit event
     /*document.getElementById('newSearch').addEventListener('submit', function() {
@@ -80,7 +81,14 @@ function refreshVisual() {
     var tabList3 = document.getElementById('low-priority');
     tabList3.innerHTML = '';
 
-// NOT ALWAYS WORKING...
+    var allTabs = JSON.stringify(tabs);
+
+    // export code from http://stackoverflow.com/questions/20104552/javascript-export-in-json-and-download-it-as-text-file-by-clicking-a-button
+    var save = document.getElementById("export");
+    save.download = "JSONexport.txt";
+    save.href = "data:text/plain;base64," + btoa(allTabs);
+    save.innerHTML = "Export";
+
     if (tabs.length == 0) {
       var add1 = document.createElement('p');
       add1.innerHTML = 'Use Alt+1 to mark tabs as important.';
@@ -110,6 +118,13 @@ function refreshVisual() {
       var a = document.createElement('a');
       a.id = 'tab-' + tab.timestamp;
       a.className = "list-group-item";
+
+      var up = document.createElement('button');
+      up.className = 'glyphicon glyphicon-chevron-up'
+      up.innerHTML = '';
+      up.setAttribute("data-id", tab.timestamp);
+
+      a.appendChild(up);
 
       var remove = document.createElement('button');
       remove.className = 'glyphicon glyphicon-remove';
@@ -161,11 +176,18 @@ function refreshVisual() {
         tabList3.appendChild(add3);
       }*/
 
-// SOMETIMES HAVE TO CLICK TWICE...WHY???
+      /*up.addEventListener('click', function(e) {
+        alert(tab.importance, tab.text);
+        var id = parseInt(e.target.getAttribute('data-id'));
+        pageDB.createTab(tab.text, tab.importance, tab.highlighted, tab.url, refreshVisual);
+        pageDB.deleteTab(id, refreshVisual);
+      });*/
+
       remove.addEventListener('click', function(e) {
+        alert(tab);
         var id = parseInt(e.target.getAttribute('data-id'));
         pageDB.deleteTab(id, refreshVisual);
-        pageDB.open(refreshTabs);
+        alert("deleted " + id);
       });
 
     }
