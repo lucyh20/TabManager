@@ -24,7 +24,7 @@
   },
 
   "background": {
-    "scripts": ["extension.js", "db.js"]
+    "scripts": ["extension.js", "db.js", "visual.js"]
   },
 
   "icons": {
@@ -57,8 +57,8 @@
     },
     "_execute_browser_action": {
       "suggested_key": {
-        "default": "Ctrl+B",
-        "mac": "Command+B"
+        "default": "Alt+B",
+        "mac": "Alt+B"
       }
     }
   }

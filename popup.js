@@ -111,7 +111,7 @@ function refreshTabs() {
 
       // Remove button
       var remove = document.createElement('button');
-      remove.className = 'glyphicon glyphicon-remove';
+      remove.className = 'glyphicon glyphicon-remove gi-2x';
       remove.innerHTML = '';
       remove.setAttribute("data-id", tab.timestamp);
 

@@ -184,10 +184,8 @@ function refreshVisual() {
       });*/
 
       remove.addEventListener('click', function(e) {
-        alert(tab);
         var id = parseInt(e.target.getAttribute('data-id'));
         pageDB.deleteTab(id, refreshVisual);
-        alert("deleted " + id);
       });
 
     }
